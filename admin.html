@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Journey | Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>body { font-family: 'Outfit', sans-serif; background-color: #f8fafc; }</style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-slate-900 p-4">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md text-center">
+            <div class="w-16 h-16 bg-yellow-500 rounded-xl mx-auto flex items-center justify-center text-slate-900 font-bold text-3xl mb-6 shadow-lg">M</div>
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Admin Login</h2>
+            <p class="text-slate-500 mb-6 text-sm">Silakan masukkan API Key rahasia untuk melihat data leads pelanggan.</p>
+            
+            <form id="loginForm" class="space-y-4">
+                <input type="password" id="apiKey" required placeholder="Masukkan API Key" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                <button type="submit" class="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-800 transition-all shadow-lg">Login ke Dashboard</button>
+                <div id="loginError" class="hidden text-red-500 text-sm mt-2 font-medium"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboardScreen" class="hidden min-h-screen flex flex-col">
+        <!-- Navbar -->
+        <nav class="bg-slate-900 text-white py-4 px-6 shadow-lg flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center text-slate-900 font-bold text-lg">M</div>
+                <span class="font-bold text-lg tracking-tight">Leads Dashboard</span>
+            </div>
+            <button id="logoutBtn" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-7xl w-full mx-auto p-6 md:p-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-1">Daftar Konsultasi Baru</h1>
+                    <p class="text-slate-500">Menampilkan pengajuan formulir langsung dari landing page.</p>
+                </div>
+                <button id="refreshBtn" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-4 py-2 rounded-lg font-medium shadow-sm transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> <span>Refresh Data</span>
+                </button>
+            </div>
+
+            <!-- Table Card -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 text-sm uppercase tracking-wider">
+                                <th class="p-4 font-semibold border-b border-slate-200">Waktu</th>
+                                <th class="p-4 font-semibold border-b border-slate-200">Nama Lengkap</th>
+                                <th class="p-4 font-semibold border-b border-slate-200">No WhatsApp</th>
+                                <th class="p-4 font-semibold border-b border-slate-200">Brand / Perusahaan</th>
+                                <th class="p-4 font-semibold border-b border-slate-200">Pesan</th>
+                                <th class="p-4 font-semibold border-b border-slate-200 text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leadsTableBody" class="divide-y divide-slate-100">
+                            <!-- Data will be injected here -->
+                            <tr><td colspan="6" class="p-8 text-center text-slate-400">Loading data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const loginScreen = document.getElementById('loginScreen');
+        const dashboardScreen = document.getElementById('dashboardScreen');
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const tbody = document.getElementById('leadsTableBody');
+        let currentApiKey = localStorage.getItem('mj_api_key') || '';
+
+        // Init check
+        if(currentApiKey) {
+            loginScreen.classList.add('hidden');
+            dashboardScreen.classList.remove('hidden');
+            fetchLeads();
+        }
+
+        // Handle Login
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const key = document.getElementById('apiKey').value;
+            currentApiKey = key;
+            localStorage.setItem('mj_api_key', key);
+            
+            loginScreen.classList.add('hidden');
+            dashboardScreen.classList.remove('hidden');
+            fetchLeads();
+        });
+
+        // Handle Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            currentApiKey = '';
+            localStorage.removeItem('mj_api_key');
+            document.getElementById('apiKey').value = '';
+            dashboardScreen.classList.add('hidden');
+            loginScreen.classList.remove('hidden');
+            loginScreen.classList.add('flex');
+        });
+
+        // Refresh
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            const icon = document.querySelector('#refreshBtn i');
+            icon.classList.add('fa-spin');
+            fetchLeads().then(() => icon.classList.remove('fa-spin'));
+        });
+
+        // Fetch Data
+        async function fetchLeads() {
+            try {
+                const res = await fetch(`/api/leads?key=${currentApiKey}`);
+                
+                // Cek status code, jika 429 Too Many Requests
+                if(res.status === 429) {
+                    throw new Error("Terlalu banyak permintaan refresh. Tunggu beberapa detik.");
+                }
+
+                const data = await res.json();
+                
+                if(!res.ok) {
+                    throw new Error(data.error || 'Gagal memuat data');
+                }
+                
+                renderTable(data.leads);
+                loginError.classList.add('hidden');
+            } catch (err) {
+                // Return to login with error
+                loginError.textContent = err.message || 'API Key salah atau sesi kadaluarsa.';
+                loginError.classList.remove('hidden');
+                document.getElementById('logoutBtn').click();
+            }
+        }
+
+        // Render Table
+        function renderTable(leads) {
+            if(leads.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-slate-400">Belum ada formulir yang masuk.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = leads.map(lead => {
+                const date = new Date(lead.created_at).toLocaleString('id-ID', {
+                    day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute:'2-digit'
+                });
+                
+                // Format nomor WhatsApp (hapus karakter selain angka)
+                let phoneFormatted = lead.phone.replace(/[^0-9]/g, '');
+                if(phoneFormatted.startsWith('0')) phoneFormatted = '62' + phoneFormatted.substring(1);
+                
+                const waLink = `https://wa.me/${phoneFormatted}?text=Halo%20kak%20${encodeURIComponent(lead.name)},%20kami%20dari%20Media%20Journey%20ingin%20memfollow-up%20pengajuan%20konsultasi%20di%20website...`;
+
+                return `
+                    <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="p-4 text-sm text-slate-500 whitespace-nowrap">${date}</td>
+                        <td class="p-4 font-semibold text-slate-900">${lead.name}</td>
+                        <td class="p-4 text-sm text-slate-600">${lead.phone}</td>
+                        <td class="p-4 text-sm text-slate-600">
+                            ${lead.company ? `<span class="bg-slate-100 text-slate-700 px-2 py-1 rounded text-xs font-medium border border-slate-200">${lead.company}</span>` : '-'}
+                        </td>
+                        <td class="p-4 text-sm text-slate-600 max-w-xs truncate" title="${lead.message}">${lead.message}</td>
+                        <td class="p-4 text-center">
+                            <a href="${waLink}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 hover:bg-green-500 hover:text-white transition-colors" title="Chat WhatsApp Sekarang">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+    </script>
+</body>
+</html>

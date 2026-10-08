@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Journey Solution | Creative Digital Agency Bogor</title>
+    <meta name="description"
+        content="Creative Digital Agency - Membantu Brand Membangun Perjalanan Digital yang Bermakna Melalui Konten Sinematik, Strategi, dan Website Profesional.">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            500: '#334e68',
+                            800: '#102a43',
+                            900: '#0a192f', /* Deep Navy Blue */
+                        },
+                        gold: {
+                            400: '#facc15',
+                            500: '#d4af37', /* Primary Gold */
+                            600: '#b49126',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Styles -->
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #d4af37, #fde047);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient-navy {
+            background: linear-gradient(135deg, #0a192f 0%, #102a43 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-gold-500 selection:text-navy-900">
+
+    <!-- 1. Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 py-2" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 bg-gold-500 rounded-lg flex items-center justify-center text-navy-900 font-bold text-xl shadow-lg">
+                        M</div>
+                    <span class="font-bold text-xl tracking-tight text-white transition-colors duration-300"
+                        id="logo-text">Media Journey</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-8 items-center">
+                    <a href="#tentang"
+                        class="text-white hover:text-gold-500 transition-colors font-medium text-sm nav-link">Tentang
+                        Kami</a>
+                    <a href="#layanan"
+                        class="text-white hover:text-gold-500 transition-colors font-medium text-sm nav-link">Layanan</a>
+                    <a href="#cara-kerja"
+                        class="text-white hover:text-gold-500 transition-colors font-medium text-sm nav-link">Cara
+                        Kerja</a>
+                    <a href="#harga"
+                        class="text-white hover:text-gold-500 transition-colors font-medium text-sm nav-link">Harga</a>
+                    <a href="#tim"
+                        class="text-white hover:text-gold-500 transition-colors font-medium text-sm nav-link">Tim</a>
+                    <a href="#formulir"
+                        class="bg-gold-500 hover:bg-gold-600 text-navy-900 px-6 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg">Konsultasi
+                        Gratis</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button class="text-white hover:text-gold-500 focus:outline-none nav-icon-mobile"
+                        id="openMobileBtn">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Drawer (Hidden by default) -->
+    <div id="mobileMenu"
+        class="fixed inset-0 z-[60] bg-navy-900/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col justify-center items-center space-y-8">
+        <button id="closeMobileBtn"
+            class="absolute top-8 right-8 text-white text-4xl focus:outline-none hover:text-gold-500 transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <a href="#tentang"
+            class="text-white text-2xl font-bold hover:text-gold-500 transition-colors mobile-link">Tentang Kami</a>
+        <a href="#layanan"
+            class="text-white text-2xl font-bold hover:text-gold-500 transition-colors mobile-link">Layanan</a>
+        <a href="#cara-kerja"
+            class="text-white text-2xl font-bold hover:text-gold-500 transition-colors mobile-link">Cara Kerja</a>
+        <a href="#harga"
+            class="text-white text-2xl font-bold hover:text-gold-500 transition-colors mobile-link">Harga</a>
+        <a href="#tim" class="text-white text-2xl font-bold hover:text-gold-500 transition-colors mobile-link">Tim</a>
+        <a href="#formulir"
+            class="bg-gold-500 text-navy-900 px-8 py-3 rounded-full font-bold text-xl hover:bg-gold-600 transition-all mobile-link shadow-lg mt-4">Konsultasi
+            Gratis</a>
+    </div>
+
+    <!-- 2. Hero Section -->
+    <section class="relative pt-32 pb-24 lg:pt-48 lg:pb-40 bg-gradient-navy overflow-hidden">
+        <!-- Abstract Pattern Background -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M0 40L40 0H20L0 20M40 40V20L20 40" stroke="currentColor" stroke-width="1"
+                            fill="none" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid-pattern)" class="text-white" />
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div
+                class="inline-block mb-6 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm text-gold-400 font-semibold text-sm tracking-wide">
+                Creative Digital Agency di Bogor
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                Bangun Perjalanan Digital <br class="hidden md:block" /> yang <span
+                    class="text-gradient">Bermakna</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+                Kami membantu UMKM & Brand F&B di Bogor bersinar melalui pendekatan <strong
+                    class="text-white font-medium">konten sinematik</strong>, <strong
+                    class="text-white font-medium">strategi digital terukur</strong>, dan <strong
+                    class="text-white font-medium">website profesional</strong>.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#kontak"
+                    class="bg-gold-500 hover:bg-gold-600 text-navy-900 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:-translate-y-1 shadow-[0_10px_25px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2">
+                    Mulai Perjalanan Digital Anda <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Curve Decor -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none transform translate-y-[1px]">
+            <svg class="relative block w-full h-[50px] md:h-[100px]" data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                    class="fill-white"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 3. Section Masalah (Pain Points) -->
+    <section class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Masalah yang Sering Dihadapi <span
+                        class="text-gold-500">UMKM & Cafe</span></h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Apakah brand Anda sedang mengalami salah satu dari
+                    tantangan ini di era persaingan digital?</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-slate-50 rounded-3xl p-8 border border-slate-100 card-hover relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 w-24 h-24 bg-red-500/5 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-red-100 text-red-500 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fa-solid fa-calendar-xmark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Konten Tidak Konsisten</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Posting sesekali tanpa jadwal yang jelas dan
+                        strategi, membuat audiens mudah lupa dengan brand Anda.</p>
+                </div>
+                <!-- Card 2 -->
+                <div
+                    class="bg-slate-50 rounded-3xl p-8 border border-slate-100 card-hover relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-orange-100 text-orange-500 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Kualitas Visual Kurang</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Menggunakan foto dan video seadanya yang tidak
+                        mampu merepresentasikan kualitas produk sebenarnya.</p>
+                </div>
+                <!-- Card 3 -->
+                <div
+                    class="bg-slate-50 rounded-3xl p-8 border border-slate-100 card-hover relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-purple-100 text-purple-500 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Belum Punya Website</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Kurang kredibel di mata pencarian Google,
+                        membatasi jangkauan, dan hanya bergantung pada sosial media.</p>
+                </div>
+                <!-- Card 4 -->
+                <div
+                    class="bg-slate-50 rounded-3xl p-8 border border-slate-100 card-hover relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-blue-100 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fa-solid fa-chess-knight"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Tidak Ada Strategi Konten</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Konten dibuat asal jadi tanpa melakukan riset
+                        audiens, kompetitor, maupun tujuan konversi bisnis yang jelas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Tentang Kami & Visi Misi -->
+    <section id="tentang" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Image/Visual Layout -->
+                <div class="relative order-2 lg:order-1">
+                    <div
+                        class="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl relative z-10 bg-gradient-navy flex items-center justify-center border-4 border-white">
+                        <div class="text-center p-8">
+                            <div
+                                class="w-24 h-24 bg-gold-500 rounded-2xl mx-auto mb-8 flex items-center justify-center text-navy-900 font-bold text-5xl shadow-lg">
+                                M</div>
+                            <h3 class="text-3xl font-bold text-white mb-2">Media Journey</h3>
+                            <p class="text-gold-400 font-medium tracking-widest uppercase text-sm">Digital Partner in
+                                Bogor</p>
+                        </div>
+                    </div>
+                    <!-- Decor Elements -->
+                    <div class="absolute -top-8 -left-8 w-32 h-32 bg-gold-400 rounded-full opacity-30 blur-2xl"></div>
+                    <div class="absolute -bottom-8 -right-8 w-40 h-40 bg-navy-500 rounded-full opacity-20 blur-2xl">
+                    </div>
+                    <!-- Stats badge -->
+                    <div
+                        class="absolute top-10 -right-6 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Fokus Pada</p>
+                            <p class="text-lg font-bold text-navy-900">Pertumbuhan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="order-1 lg:order-2">
+                    <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-gold-100 text-gold-600 font-bold text-sm">
+                        Siapa Kami?
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-navy-900 mb-6 leading-tight">Mitra Strategis
+                        Pertumbuhan Digital Brand Anda</h2>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-10 border-l-4 border-gold-500 pl-4">
+                        Lahir dari keresahan bahwa banyak brand lokal (UMKM & Cafe) punya produk yang sangat bagus, tapi
+                        kesulitan tampil maksimal secara digital. Kami hadir sebagai solusi untuk menjembatani
+                        kesenjangan tersebut.
+                    </p>
+
+                    <div class="space-y-8">
+                        <div class="flex gap-5">
+                            <div
+                                class="flex-shrink-0 w-14 h-14 rounded-2xl bg-navy-900 text-gold-500 flex items-center justify-center text-2xl shadow-md">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-navy-900 mb-2">Misi Kami</h4>
+                                <p class="text-slate-600 leading-relaxed text-sm md:text-base">Membantu brand lokal
+                                    tumbuh secara digital lewat konten autentik, strategis, dan berorientasi pada hasil
+                                    yang nyata.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div
+                                class="flex-shrink-0 w-14 h-14 rounded-2xl bg-gold-500 text-navy-900 flex items-center justify-center text-2xl shadow-md">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-navy-900 mb-2">Visi Kami</h4>
+                                <p class="text-slate-600 leading-relaxed text-sm md:text-base">Menjadi mitra digital
+                                    terpercaya dan pilihan utama bagi UMKM serta brand F&B di wilayah Bogor dan
+                                    sekitarnya.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Layanan Kami (Solutions) -->
+    <section id="layanan" class="py-24 bg-gradient-navy text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Solusi Digital <span
+                        class="text-gradient">Terintegrasi</span></h2>
+                <p class="text-slate-300 max-w-2xl mx-auto text-lg">Empat pilar layanan utama kami untuk membawa bisnis
+                    Anda mendominasi pasar digital.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Service 1 -->
+                <div
+                    class="bg-white/5 border border-white/10 rounded-3xl p-8 lg:p-10 backdrop-blur-sm card-hover group">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-gold-400 to-gold-600 rounded-2xl flex items-center justify-center text-navy-900 text-3xl mb-6 transform group-hover:-rotate-6 transition-transform shadow-lg">
+                        <i class="fa-solid fa-camera-retro"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Strategi & Produksi Konten</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6 text-sm">Membangun presence di sosial media yang tidak
+                        hanya estetis di mata, tapi juga strategis untuk konversi penjualan.</p>
+                    <ul class="space-y-3 text-slate-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i> Riset
+                            & Kalender Konten</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i>
+                            Cinematic Video & Photography</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i>
+                            Copywriting Persuasif</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div
+                    class="bg-white/5 border border-white/10 rounded-3xl p-8 lg:p-10 backdrop-blur-sm card-hover group">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-gold-400 to-gold-600 rounded-2xl flex items-center justify-center text-navy-900 text-3xl mb-6 transform group-hover:rotate-6 transition-transform shadow-lg">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Pengembangan Website</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6 text-sm">Ciptakan eksistensi digital yang kredibel
+                        dengan website yang cepat, responsif, dan didesain khusus untuk brand Anda.</p>
+                    <ul class="space-y-3 text-slate-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i>
+                            Website Company Profile</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i>
+                            Landing Page Berbasis Konversi</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i> Toko
+                            Online (E-Commerce)</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div
+                    class="bg-white/5 border border-white/10 rounded-3xl p-8 lg:p-10 backdrop-blur-sm card-hover group">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-gold-400 to-gold-600 rounded-2xl flex items-center justify-center text-navy-900 text-3xl mb-6 transform group-hover:-rotate-6 transition-transform shadow-lg">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Konsultasi Digital Strategy</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6 text-sm">Bukan sekadar vendor, kami memposisikan diri
+                        sebagai rekan diskusi untuk mengarahkan strategi jangka panjang bisnis Anda.</p>
+                    <ul class="space-y-3 text-slate-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i> Audit
+                            Aset Digital Brand</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i>
+                            Pendampingan Jangka Panjang</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i>
+                            Analisa Kompetitor Pasar</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div
+                    class="bg-white/5 border border-white/10 rounded-3xl p-8 lg:p-10 backdrop-blur-sm card-hover group relative overflow-hidden">
+                    <div
+                        class="absolute top-6 right-6 bg-gold-500 text-navy-900 text-xs font-extrabold px-3 py-1.5 rounded-full shadow-lg">
+                        Fee 15-20% dari Budget
+                    </div>
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-gold-400 to-gold-600 rounded-2xl flex items-center justify-center text-navy-900 text-3xl mb-6 transform group-hover:rotate-6 transition-transform shadow-lg">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Pencarian & Manajemen KOL</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6 text-sm">Amplifikasi pesan brand Anda melalui
+                        influencer dan Key Opinion Leaders lokal yang paling tepat sasaran.</p>
+                    <ul class="space-y-3 text-slate-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i> Riset
+                            & Kurasi KOL Relevan</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i>
+                            Negosiasi Harga & Kontrak</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-500"></i>
+                            Monitoring & Pelaporan Tayangan</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Mengapa Memilih Kami -->
+    <section class="py-24 bg-white relative overflow-hidden border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Mengapa Memilih Kami?</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Nilai tambah eksklusif yang kami berikan untuk
+                    memastikan kesuksesan digital brand Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Point 1 -->
+                <div class="text-center p-6 group">
+                    <div
+                        class="w-24 h-24 mx-auto bg-slate-50 text-navy-900 rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm border border-slate-100 group-hover:bg-navy-900 group-hover:text-gold-500 transition-all duration-300">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Pendekatan Sinematik</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">Kami menyajikan karya visual berkualitas tinggi,
+                        bukan sekadar menggunakan template pasaran.</p>
+                </div>
+                <!-- Point 2 -->
+                <div class="text-center p-6 group">
+                    <div
+                        class="w-24 h-24 mx-auto bg-slate-50 text-navy-900 rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm border border-slate-100 group-hover:bg-navy-900 group-hover:text-gold-500 transition-all duration-300">
+                        <i class="fa-solid fa-chess"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Berbasis Riset & Strategi</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">Setiap langkah dan konten dibuat berdasarkan data
+                        dan strategi yang matang, bukan sekadar tebakan.</p>
+                </div>
+                <!-- Point 3 -->
+                <div class="text-center p-6 group">
+                    <div
+                        class="w-24 h-24 mx-auto bg-slate-50 text-navy-900 rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm border border-slate-100 group-hover:bg-navy-900 group-hover:text-gold-500 transition-all duration-300">
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Layanan Terintegrasi</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">Dari foto, video, tulisan, hingga website semua
+                        dikerjakan secara kohesif dalam satu tim yang solid.</p>
+                </div>
+                <!-- Point 4 -->
+                <div class="text-center p-6 group">
+                    <div
+                        class="w-24 h-24 mx-auto bg-slate-50 text-navy-900 rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm border border-slate-100 group-hover:bg-navy-900 group-hover:text-gold-500 transition-all duration-300">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Komunikasi Personal</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">Proses kolaborasi yang responsif dan fleksibel,
+                        tanpa birokrasi agency yang panjang dan kaku.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Cara Kerja (Workflow) -->
+    <section id="cara-kerja" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Cara Kerja Kami</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Proses transparan dalam 5 langkah efektif untuk
+                    hasil maksimal.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Line connecting the dots -->
+                <div
+                    class="hidden lg:block absolute top-10 left-10 right-10 h-1 bg-gradient-to-r from-slate-200 via-gold-400 to-slate-200 z-0">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="text-center group relative">
+                        <div
+                            class="w-20 h-20 mx-auto bg-white border-4 border-slate-200 group-hover:border-gold-500 rounded-full flex items-center justify-center text-2xl font-black text-navy-900 mb-6 transition-all duration-300 shadow-md group-hover:shadow-xl group-hover:scale-110">
+                            1</div>
+                        <h4 class="text-xl font-bold text-navy-900 mb-3">Konsultasi</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">Diskusi kebutuhan & pembuatan brief secara
+                            mendalam.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="text-center group relative">
+                        <div
+                            class="w-20 h-20 mx-auto bg-white border-4 border-slate-200 group-hover:border-gold-500 rounded-full flex items-center justify-center text-2xl font-black text-navy-900 mb-6 transition-all duration-300 shadow-md group-hover:shadow-xl group-hover:scale-110">
+                            2</div>
+                        <h4 class="text-xl font-bold text-navy-900 mb-3">Strategi</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">Riset audiens, kompetitor & penyusunan
+                            rencana.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="text-center group relative">
+                        <div
+                            class="w-20 h-20 mx-auto bg-white border-4 border-slate-200 group-hover:border-gold-500 rounded-full flex items-center justify-center text-2xl font-black text-navy-900 mb-6 transition-all duration-300 shadow-md group-hover:shadow-xl group-hover:scale-110">
+                            3</div>
+                        <h4 class="text-xl font-bold text-navy-900 mb-3">Produksi</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">Eksekusi pembuatan konten foto/video atau
+                            coding website.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="text-center group relative">
+                        <div
+                            class="w-20 h-20 mx-auto bg-white border-4 border-slate-200 group-hover:border-gold-500 rounded-full flex items-center justify-center text-2xl font-black text-navy-900 mb-6 transition-all duration-300 shadow-md group-hover:shadow-xl group-hover:scale-110">
+                            4</div>
+                        <h4 class="text-xl font-bold text-navy-900 mb-3">Review</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">Sesi revisi & penyempurnaan karya bersama
+                            klien.</p>
+                    </div>
+                    <!-- Step 5 -->
+                    <div class="text-center group relative">
+                        <div
+                            class="w-20 h-20 mx-auto bg-white border-4 border-slate-200 group-hover:border-gold-500 rounded-full flex items-center justify-center text-2xl font-black text-navy-900 mb-6 transition-all duration-300 shadow-md group-hover:shadow-xl group-hover:scale-110">
+                            5</div>
+                        <h4 class="text-xl font-bold text-navy-900 mb-3">Publikasi & Evaluasi</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">Konten Go-live dengan pantauan dan laporan
+                            berkala.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Harga & Paket -->
+    <section id="harga" class="py-24 bg-white relative">
+        <!-- Abstract background shape -->
+        <div class="absolute top-0 right-0 w-1/3 h-1/2 bg-slate-50 rounded-bl-[100px] -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Investasi Fleksibel Sesuai Kebutuhan
+                </h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Pilih paket yang paling tepat untuk skala bisnis
+                    Anda saat ini.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+
+                <!-- Starter Package -->
+                <div
+                    class="bg-white rounded-[2rem] p-8 lg:p-10 border border-slate-200 card-hover shadow-lg relative z-10">
+                    <h3 class="text-2xl font-extrabold text-navy-900 mb-2">STARTER</h3>
+                    <div class="text-sm text-slate-500 mb-6 font-medium">Langkah awal untuk brand Anda</div>
+                    <div class="mb-8">
+                        <span class="text-3xl lg:text-4xl font-black text-navy-900">Rp 1,5 - 2,5 Jt</span>
+                        <span class="text-slate-500 text-sm">/bulan</span>
+                    </div>
+                    <div class="w-full h-px bg-slate-100 mb-8"></div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3 text-slate-600 font-medium"><i
+                                class="fa-solid fa-check text-green-500 mt-1"></i> 8-12 Konten per bulan</li>
+                        <li class="flex items-start gap-3 text-slate-600 font-medium"><i
+                                class="fa-solid fa-check text-green-500 mt-1"></i> Desain semi-template</li>
+                        <li class="flex items-start gap-3 text-slate-600 font-medium"><i
+                                class="fa-solid fa-check text-green-500 mt-1"></i> Copywriting standar</li>
+                        <li class="flex items-start gap-3 text-slate-400 opacity-60"><i
+                                class="fa-solid fa-xmark mt-1"></i> Tanpa produksi foto/video</li>
+                        <li class="flex items-start gap-3 text-slate-400 opacity-60"><i
+                                class="fa-solid fa-xmark mt-1"></i> Laporan standar</li>
+                    </ul>
+                    <button type="button" onclick="openPaymentModal('Starter')"
+                        class="block w-full py-4 px-4 bg-white border-2 border-navy-900 text-navy-900 text-center font-bold rounded-xl hover:bg-navy-900 hover:text-white transition-all duration-300">Pilih
+                        Starter</button>
+                </div>
+
+                <!-- Growth Package (Highlighted) -->
+                <div
+                    class="bg-gradient-navy rounded-[2.5rem] p-8 lg:p-12 border border-gold-500 shadow-2xl relative transform lg:-translate-y-6 z-20">
+                    <div
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-gold-400 to-gold-600 text-navy-900 font-extrabold px-6 py-1.5 rounded-full text-sm shadow-lg whitespace-nowrap">
+                        <i class="fa-solid fa-star mr-1"></i> Paling Direkomendasikan
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-white mb-2">GROWTH</h3>
+                    <div class="text-sm text-slate-300 mb-6 font-medium">Ideal untuk eskalasi & branding kuat</div>
+                    <div class="mb-8">
+                        <span class="text-3xl lg:text-4xl font-black text-gold-400">Rp 3 - 5 Jt</span>
+                        <span class="text-slate-400 text-sm">/bulan</span>
+                    </div>
+                    <div class="w-full h-px bg-white/10 mb-8"></div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3 text-white font-medium"><i
+                                class="fa-solid fa-check text-gold-500 mt-1"></i> 12-16 Konten Premium</li>
+                        <li class="flex items-start gap-3 text-white font-medium"><i
+                                class="fa-solid fa-check text-gold-500 mt-1"></i> Produksi Foto & Video original</li>
+                        <li class="flex items-start gap-3 text-white font-medium"><i
+                                class="fa-solid fa-check text-gold-500 mt-1"></i> Jadwal rutin terstruktur</li>
+                        <li class="flex items-start gap-3 text-white font-medium"><i
+                                class="fa-solid fa-check text-gold-500 mt-1"></i> Copywriting persuasif & kreatif</li>
+                        <li class="flex items-start gap-3 text-white font-medium"><i
+                                class="fa-solid fa-check text-gold-500 mt-1"></i> Laporan performa bulanan detail</li>
+                    </ul>
+                    <button type="button" onclick="openPaymentModal('Growth')"
+                        class="block w-full py-4 px-4 bg-gold-500 text-navy-900 text-center font-bold rounded-xl hover:bg-gold-600 transition-all duration-300 shadow-lg transform hover:scale-105">Pilih
+                        Growth</button>
+                </div>
+
+                <!-- Premium Package -->
+                <div
+                    class="bg-white rounded-[2rem] p-8 lg:p-10 border border-slate-200 card-hover shadow-lg relative z-10">
+                    <h3 class="text-2xl font-extrabold text-navy-900 mb-2">PREMIUM</h3>
+                    <div class="text-sm text-slate-500 mb-6 font-medium">Untuk dominasi pasar digital absolut</div>
+                    <div class="mb-8">
+                        <span class="text-3xl lg:text-4xl font-black text-navy-900">Rp 6 - 10 Jt</span>
+                        <span class="text-slate-500 text-sm">/bulan</span>
+                    </div>
+                    <div class="w-full h-px bg-slate-100 mb-8"></div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3 text-slate-600 font-medium"><i
+                                class="fa-solid fa-check text-green-500 mt-1"></i> 16-24+ Konten full custom</li>
+                        <li class="flex items-start gap-3 text-slate-600 font-medium"><i
+                                class="fa-solid fa-check text-green-500 mt-1"></i> Video Cinematic & Motion Graphics
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600 font-medium"><i
+                                class="fa-solid fa-check text-green-500 mt-1"></i> Community Management aktif</li>
+                        <li class="flex items-start gap-3 text-slate-600 font-medium"><i
+                                class="fa-solid fa-check text-green-500 mt-1"></i> Sesi produksi skala besar</li>
+                        <li class="flex items-start gap-3 text-slate-600 font-medium"><i
+                                class="fa-solid fa-check text-green-500 mt-1"></i> Konsultasi strategi intensif</li>
+                    </ul>
+                    <button type="button" onclick="openPaymentModal('Premium')"
+                        class="block w-full py-4 px-4 bg-white border-2 border-navy-900 text-navy-900 text-center font-bold rounded-xl hover:bg-navy-900 hover:text-white transition-all duration-300">Pilih
+                        Premium</button>
+                </div>
+            </div>
+
+            <!-- Metode Pembayaran Supported -->
+            <div class="mt-20 pt-12 border-t border-slate-200 text-center" data-aos="fade-up">
+                <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">Pembayaran Mudah & Aman via:
+                </p>
+                <div
+                    class="flex flex-wrap justify-center items-center gap-8 md:gap-14 opacity-80 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500 bg-white py-6 px-8 rounded-3xl shadow-sm border border-slate-100 inline-flex">
+                    <!-- QRIS -->
+                    <img src="/public/uu.png" alt="QRIS"
+                        class="h-7 md:h-9 object-contain" title="Bayar Praktis dengan QRIS">
+                    <!-- ShopeePay -->
+                    <img src="/public/spay.png" alt="ShopeePay" class="h-9 md:h-12 object-contain"
+                        title="ShopeePay">
+                    <!-- SPayLater -->
+                    <div class="flex items-center gap-2" title="Transfer BCA">
+                        <img src="/public/bca.png" alt="BCA"
+                            class="h-9 md:h-12 object-contain filter hue-rotate-180">
+        
+                    </div>
+                    <!-- Mandiri -->
+                    <img src="/public/mandiri.png"
+                        alt="Mandiri" class="h-7 md:h-9 object-contain" title="Transfer Bank Mandiri">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Tim Kami (Slider/Grid) -->
+    <section id="tim" class="py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-navy-100 text-navy-800 font-bold text-sm">
+                    Tim Profesional
+                </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Orang-orang di Balik Layar</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Kolaborasi ahli lintas bidang yang berdedikasi penuh
+                    untuk brand Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+                <!-- Member 1 -->
+                <div
+                    class="bg-white p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-50 group hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mx-auto bg-slate-200 rounded-2xl mb-4 overflow-hidden transform group-hover:rotate-3 transition-transform">
+                        <img src="https://ui-avatars.com/api/?name=Johasnse&background=102a43&color=d4af37&size=150&bold=true"
+                            alt="Johansen" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-extrabold text-navy-900">Johasnen</h4>
+                    <p class="text-xs text-gold-600 font-semibold uppercase mt-1">Project Manager</p>
+                </div>
+                <!-- Member 2 -->
+                <div
+                    class="bg-white p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-50 group hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mx-auto bg-slate-200 rounded-2xl mb-4 overflow-hidden transform group-hover:-rotate-3 transition-transform">
+                        <img src="https://ui-avatars.com/api/?name=Fariz&background=102a43&color=d4af37&size=150&bold=true"
+                            alt="Fariz" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-extrabold text-navy-900">Fariz K</h4>
+                    <p class="text-xs text-gold-600 font-semibold uppercase mt-1">Fullstack Web </p>
+                </div>
+                <!-- Member 3 -->
+                <div
+                    class="bg-white p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-50 group hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mx-auto bg-slate-200 rounded-2xl mb-4 overflow-hidden transform group-hover:rotate-3 transition-transform">
+                        <img src="https://ui-avatars.com/api/?name=Fajar&background=102a43&color=d4af37&size=150&bold=true"
+                            alt="Fajar" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-extrabold text-navy-900">Fajar</h4>
+                    <p class="text-xs text-gold-600 font-semibold uppercase mt-1">Security and backup data</p>
+                </div>
+                <!-- Member 4 -->
+                <div
+                    class="bg-white p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-50 group hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mx-auto bg-slate-200 rounded-2xl mb-4 overflow-hidden transform group-hover:-rotate-3 transition-transform">
+                        <img src="https://ui-avatars.com/api/?name=Jowan&background=102a43&color=d4af37&size=150&bold=true"
+                            alt="Jowan" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-extrabold text-navy-900">Jowan</h4>
+                    <p class="text-xs text-gold-600 font-semibold uppercase mt-1">Marketing</p>
+                </div>
+                <!-- Member 5 -->
+                <div
+                    class="bg-white p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-50 group hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mx-auto bg-slate-200 rounded-2xl mb-4 overflow-hidden transform group-hover:rotate-3 transition-transform">
+                        <img src="https://ui-avatars.com/api/?name=Hasby&background=102a43&color=d4af37&size=150&bold=true"
+                            alt="Hasby" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-extrabold text-navy-900">Hasby</h4>
+                    <p class="text-xs text-gold-600 font-semibold uppercase mt-1">UI & UX Designer</p>
+                </div>
+                <!-- Member 6 -->
+                <div
+                    class="bg-white p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-50 group hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mx-auto bg-slate-200 rounded-2xl mb-4 overflow-hidden transform group-hover:-rotate-3 transition-transform">
+                        <img src="https://ui-avatars.com/api/?name=Airlangga&background=102a43&color=d4af37&size=150&bold=true"
+                            alt="Airlangga" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-extrabold text-navy-900">Airlangga</h4>
+                    <p class="text-xs text-gold-600 font-semibold uppercase mt-1">Desain Infastruktur Cisco</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FAQ Interaktif -->
+    <section class="py-24 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Pertanyaan Seputar Layanan Kami</h2>
+                <p class="text-slate-600 text-lg">Jawaban cepat untuk pertanyaan yang sering diajukan klien.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div
+                    class="border border-slate-200 rounded-2xl overflow-hidden bg-slate-50 transition-all duration-300">
+                    <button type="button"
+                        class="faq-btn w-full px-6 py-5 text-left font-bold text-navy-900 flex justify-between items-center focus:outline-none">
+                        <span>Berapa lama proses pembuatan konten sosial media?</span>
+                        <i class="fa-solid fa-chevron-down text-gold-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
+                        <p class="pb-5 text-slate-600 text-sm leading-relaxed">Normalnya memakan waktu 7-14 hari kerja
+                            dari tahap riset, produksi (syuting), hingga siap dipublikasi. Namun untuk paket prioritas,
+                            jadwal bisa kami sesuaikan lebih cepat.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div
+                    class="border border-slate-200 rounded-2xl overflow-hidden bg-slate-50 transition-all duration-300">
+                    <button type="button"
+                        class="faq-btn w-full px-6 py-5 text-left font-bold text-navy-900 flex justify-between items-center focus:outline-none">
+                        <span>Apakah saya bisa meminta revisi desain atau video?</span>
+                        <i class="fa-solid fa-chevron-down text-gold-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
+                        <p class="pb-5 text-slate-600 text-sm leading-relaxed">Tentu! Semua paket kami memberikan kuota
+                            revisi minor sebanyak 2 kali agar hasilnya benar-benar sesuai dengan visi dan ekspektasi
+                            brand Anda.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div
+                    class="border border-slate-200 rounded-2xl overflow-hidden bg-slate-50 transition-all duration-300">
+                    <button type="button"
+                        class="faq-btn w-full px-6 py-5 text-left font-bold text-navy-900 flex justify-between items-center focus:outline-none">
+                        <span>Bagaimana sistem pembayaran layanannya?</span>
+                        <i class="fa-solid fa-chevron-down text-gold-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
+                        <p class="pb-5 text-slate-600 text-sm leading-relaxed">Pembayaran dilakukan dengan sistem Termin
+                            (DP 50% di awal sebelum jadwal produksi, dan pelunasan 50% setelah semua file final
+                            diserahkan kepada Anda).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Formulir Konsultasi -->
+    <section id="formulir" class="py-24 pb-48 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Punya Pertanyaan?</h2>
+                <p class="text-slate-600 text-lg">Tinggalkan pesan Anda, dan tim kami akan segera menghubungi Anda.</p>
+            </div>
+
+            <div class="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl border border-slate-100 relative z-10">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-bold text-navy-900 mb-2">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full px-5 py-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all bg-slate-50">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-bold text-navy-900 mb-2">Nomor WhatsApp</label>
+                            <input type="tel" id="phone" name="phone" required
+                                class="w-full px-5 py-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all bg-slate-50">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="company" class="block text-sm font-bold text-navy-900 mb-2">Nama Bisnis /
+                            Brand</label>
+                        <input type="text" id="company" name="company"
+                            class="w-full px-5 py-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all bg-slate-50">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-bold text-navy-900 mb-2">Pesan /
+                            Kebutuhan</label>
+                        <textarea id="message" name="message" rows="4" required
+                            class="w-full px-5 py-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all resize-none bg-slate-50"></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn"
+                        class="w-full bg-navy-900 text-white font-bold py-4 rounded-xl hover:bg-navy-800 transition-all flex justify-center items-center gap-2 text-lg shadow-lg">
+                        <span>Kirim Pesan</span> <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                    <div id="formStatus" class="hidden text-center mt-4 font-bold rounded-xl p-4"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. Footer & CTA Akhir -->
+    <footer id="kontak" class="bg-navy-900 pt-32 pb-12 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Floating CTA Box -->
+            <div
+                class="bg-gradient-to-r from-gold-500 to-gold-400 rounded-[2.5rem] p-10 md:p-16 text-center transform -translate-y-48 mb-[-10rem] shadow-2xl relative overflow-hidden">
+                <div class="absolute right-0 top-0 opacity-20 pointer-events-none">
+                    <i class="fa-solid fa-rocket text-[12rem] transform translate-x-12 -translate-y-12 text-white"></i>
+                </div>
+                <div class="absolute left-0 bottom-0 opacity-10 pointer-events-none">
+                    <i
+                        class="fa-solid fa-circle-nodes text-[10rem] transform -translate-x-12 translate-y-12 text-navy-900"></i>
+                </div>
+
+                <h2 class="text-3xl md:text-5xl font-black text-navy-900 mb-6 relative z-10 leading-tight">Mari Mulai
+                    Perjalanan Digital <br class="hidden md:block" />Brand Anda</h2>
+                <p class="text-navy-800 text-lg mb-10 max-w-2xl mx-auto relative z-10 font-medium">Tingkatkan konversi,
+                    bangun brand awareness yang kuat, dan buat audiens Anda jatuh cinta pada pandangan pertama.</p>
+                <a href="https://wa.me/6281997600171" target="_blank"
+                    class="inline-flex items-center gap-3 bg-navy-900 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-navy-800 transition-all transform hover:scale-105 shadow-xl relative z-10">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Konsultasi via WhatsApp Sekarang
+                </a>
+            </div>
+
+            <!-- Footer Links & Info -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mt-12 border-b border-white/10 pb-12">
+
+                <!-- Brand Info -->
+                <div class="md:col-span-5">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div
+                            class="w-12 h-12 bg-gold-500 rounded-xl flex items-center justify-center text-navy-900 font-black text-2xl">
+                            M</div>
+                        <span class="font-bold text-2xl tracking-tight text-white">Media Journey</span>
+                    </div>
+                    <p class="text-slate-400 mb-6 leading-relaxed text-sm pr-4">
+                        Creative Digital Agency yang berfokus membantu brand lokal, UMKM, dan F&B membangun perjalanan
+                        digital yang bermakna melalui konten sinematik, strategi jitu, dan website profesional.
+                    </p>
+                    <p class="text-slate-300 font-medium"><i class="fa-solid fa-location-dot text-gold-500 mr-2"></i>
+                        Bogor, Jawa Barat, Indonesia</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="md:col-span-3">
+                    <h4 class="text-lg font-bold mb-6 text-white border-b-2 border-gold-500 inline-block pb-1">Tautan
+                        Cepat</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#tentang"
+                                class="text-slate-400 hover:text-gold-500 transition-colors flex items-center gap-2"><i
+                                    class="fa-solid fa-angle-right text-xs"></i> Tentang Kami</a></li>
+                        <li><a href="#layanan"
+                                class="text-slate-400 hover:text-gold-500 transition-colors flex items-center gap-2"><i
+                                    class="fa-solid fa-angle-right text-xs"></i> Layanan</a></li>
+                        <li><a href="#cara-kerja"
+                                class="text-slate-400 hover:text-gold-500 transition-colors flex items-center gap-2"><i
+                                    class="fa-solid fa-angle-right text-xs"></i> Cara Kerja</a></li>
+                        <li><a href="#harga"
+                                class="text-slate-400 hover:text-gold-500 transition-colors flex items-center gap-2"><i
+                                    class="fa-solid fa-angle-right text-xs"></i> Harga Paket</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="md:col-span-4">
+                    <h4 class="text-lg font-bold mb-6 text-white border-b-2 border-gold-500 inline-block pb-1">Hubungi
+                        Kami</h4>
+                    <ul class="space-y-5">
+                        <li>
+                            <a href="https://wa.me/6281997600171" target="_blank"
+                                class="flex items-center gap-4 text-slate-400 hover:text-gold-500 transition-colors group">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-xl group-hover:bg-gold-500 group-hover:text-navy-900 transition-colors">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">WhatsApp</p>
+                                    <p class="font-medium text-white">+62 819-9760-0171</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:media.journeyy@gmail.com"
+                                class="flex items-center gap-4 text-slate-400 hover:text-gold-500 transition-colors group">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-xl group-hover:bg-gold-500 group-hover:text-navy-900 transition-colors">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Email</p>
+                                    <p class="font-medium text-white">media.journeyy@gmail.com</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com/mediajourney.solution" target="_blank"
+                                class="flex items-center gap-4 text-slate-400 hover:text-gold-500 transition-colors group">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-xl group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:via-pink-500 group-hover:to-purple-500 group-hover:text-white transition-all">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Instagram</p>
+                                    <p class="font-medium text-white">@mediajourney.solution</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+                <p>&copy; 2024 Media Journey Solution. All rights reserved.</p>
+                <p>Designed with <i class="fa-solid fa-heart text-red-500 mx-1"></i> for Bogor Brands</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 13. Payment Modal (Popup) -->
+    <div id="paymentModal"
+        class="fixed inset-0 z-[70] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-navy-900/70 backdrop-blur-sm" id="paymentOverlay"></div>
+
+        <!-- Modal Content -->
+        <div class="bg-white rounded-[2rem] p-8 md:p-10 max-w-md w-full relative z-10 shadow-2xl transform scale-95 transition-all duration-300"
+            id="paymentCard">
+            <button id="closePaymentBtn"
+                class="absolute top-5 right-5 text-slate-400 hover:text-red-500 text-2xl transition-colors"><i
+                    class="fa-solid fa-xmark"></i></button>
+
+            <div class="text-center mb-6">
+                <div class="inline-block bg-gold-100 text-gold-600 px-4 py-1 rounded-full text-xs font-bold mb-3"
+                    id="modalPackageName">Paket</div>
+                <h3 class="text-2xl font-black text-navy-900 mb-1">Scan QRIS untuk Bayar</h3>
+                <p class="text-slate-500 text-sm">Gunakan M-Banking atau e-Wallet favorit Anda.</p>
+            </div>
+
+            <div
+                class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 text-center mb-6 relative overflow-hidden group">
+                <!-- QR Code Asli -->
+                <img src="/public/qr.jpg" alt="QRIS Barcode Johansen Haris"
+                    class="w-full max-w-[200px] mx-auto rounded-lg shadow-sm group-hover:scale-105 transition-transform">
+                <div class="mt-4 flex justify-center items-center gap-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" class="h-6" alt="QRIS">
+                </div>
+            </div>
+
+            <div
+                class="bg-blue-50 text-blue-800 p-4 rounded-xl text-sm mb-6 flex gap-3 items-start border border-blue-100">
+                <i class="fa-solid fa-circle-info mt-1"></i>
+                <p>Simpan bukti transfer Anda, lalu tekan tombol di bawah untuk konfirmasi pesanan di formulir.</p>
+            </div>
+
+            <button onclick="closePaymentModalAndScroll()"
+                class="w-full bg-navy-900 text-white font-bold py-4 rounded-xl hover:bg-navy-800 transition-all shadow-lg flex items-center justify-center gap-2">
+                Lanjut Konfirmasi <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Scripts for Interactivity -->
+    <script>
+        // --- 1. INISIALISASI ANIMASI (AOS) ---
+        document.querySelectorAll('section > div > div:first-child, .grid > div, .card-hover').forEach((el, index) => {
+            if (!el.hasAttribute('data-aos')) {
+                el.setAttribute('data-aos', 'fade-up');
+                el.setAttribute('data-aos-delay', (index % 3) * 100);
+            }
+        });
+        AOS.init({ once: true, duration: 800, offset: 50 });
+
+        // --- 2. FAQ INTERAKTIF (ACCORDION) ---
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                const isOpen = content.style.maxHeight;
+
+                document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = null);
+                document.querySelectorAll('.faq-btn i').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                if (!isOpen) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // --- 3. MOBILE MENU (HAMBURGER) ---
+        const mobileMenu = document.getElementById('mobileMenu');
+        const openMobileBtn = document.getElementById('openMobileBtn');
+        const closeMobileBtn = document.getElementById('closeMobileBtn');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        openMobileBtn?.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeMenu() {
+            mobileMenu.classList.add('translate-x-full');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeMobileBtn?.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+
+        // --- 4. PAYMENT MODAL LOGIC ---
+        const paymentModal = document.getElementById('paymentModal');
+        const paymentCard = document.getElementById('paymentCard');
+        const paymentOverlay = document.getElementById('paymentOverlay');
+        const closePaymentBtn = document.getElementById('closePaymentBtn');
+
+        function openPaymentModal(packageName) {
+            document.getElementById('modalPackageName').textContent = "Paket " + packageName;
+            paymentModal.classList.remove('opacity-0', 'pointer-events-none');
+            paymentCard.classList.remove('scale-95');
+            paymentCard.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePaymentModal() {
+            paymentModal.classList.add('opacity-0', 'pointer-events-none');
+            paymentCard.classList.remove('scale-100');
+            paymentCard.classList.add('scale-95');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closePaymentModalAndScroll() {
+            closePaymentModal();
+            setTimeout(() => {
+                const targetForm = document.getElementById('formulir');
+                targetForm.scrollIntoView({ behavior: 'smooth' });
+
+                // Auto-fill pesan di form
+                const pkgName = document.getElementById('modalPackageName').textContent;
+                document.getElementById('message').value = "Halo, saya telah melalukan pembayaran untuk " + pkgName + " via QRIS. Berikut adalah bukti pembayarannya: (Lampirkan Bukti)";
+
+                setTimeout(() => document.getElementById('name').focus(), 800);
+            }, 300);
+        }
+
+        closePaymentBtn?.addEventListener('click', closePaymentModal);
+        paymentOverlay?.addEventListener('click', closePaymentModal);
+
+        // --- 5. NAVBAR SCROLL EFFECT ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const logoText = document.getElementById('logo-text');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileIcon = document.querySelector('.nav-icon-mobile');
+
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-lg', 'py-1');
+                nav.classList.remove('py-2');
+                logoText.classList.replace('text-white', 'text-navy-900');
+                if (mobileIcon) mobileIcon.classList.replace('text-white', 'text-navy-900');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white', 'hover:text-gold-500');
+                    link.classList.add('text-slate-600', 'hover:text-navy-900');
+                });
+            } else {
+                nav.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-lg', 'py-1');
+                nav.classList.add('py-2');
+                logoText.classList.replace('text-navy-900', 'text-white');
+                if (mobileIcon) mobileIcon.classList.replace('text-navy-900', 'text-white');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-slate-600', 'hover:text-navy-900');
+                    link.classList.add('text-white', 'hover:text-gold-500');
+                });
+            }
+        });
+
+        // --- 5. FORM SUBMISSION (INTERACTIVE SWEETALERT) ---
+        document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const btn = document.getElementById('submitBtn');
+
+            // Loading state
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
+
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                company: document.getElementById('company').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    Swal.fire({
+                        title: 'Tersimpan!',
+                        text: 'Membuka obrolan WhatsApp untuk mengirim pesan...',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        // Arahkan ke WhatsApp
+                        const waNumber = '6281997600171';
+                        const waText = `Halo Tim Media Journey! Saya ingin berkonsultasi.%0A%0ANama: ${formData.name}%0ANo WA: ${formData.phone}%0ABrand: ${formData.company || '-'}%0A%0APesan:%0A${formData.message}`;
+                        window.open(`https://wa.me/${waNumber}?text=${waText}`, '_blank');
+                        form.reset();
+                    });
+                } else {
+                    throw new Error(data.error || 'Terjadi kesalahan');
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Gagal Mengirim',
+                    text: error.message || 'Mohon cek koneksi internet Anda atau coba beberapa saat lagi.',
+                    icon: 'error',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Tutup'
+                });
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>Kirim Pesan</span> <i class="fa-solid fa-paper-plane"></i>';
+            }
+        });
+    </script>
+</body>
+
+</html>
